@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Form</title>
+    <link rel="stylesheet" href="addform.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="form1">
+            <div class="head">
+                <h4>Student Exit log Form</h4>
+            </div>
+            <form id="studentForm2">
+                <div class="std">
+                    <label>Student Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="std">
+                    <label>Student ID</label>
+                    <input type="text" id="studentId" required>
+                </div>
+
+                <div class="std">
+                    <label>Out Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="std">
+                    <label>Out Time</label>
+                    <input type="time" id="time" required>
+                </div>
+
+                <div class="btn">
+                    <button type="submit">Submit</button>
+                    <button type="reset" class="reset">Reset</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    </div>
+
+</body>
+<script>
+
+    document.getElementById("studentForm2").addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const id = document.getElementById("studentId").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+
+        const student = { name, id, date, time };
+
+        let exits = JSON.parse(localStorage.getItem("exitLogs")) || [];
+
+        exits.push(student);
+
+        localStorage.setItem("exitLogs", JSON.stringify(exits));
+
+        window.location.replace("veiwexit.html");
+
+    });
+
+
+document.getElementsByClassName("reset").addEventListener
+("click",function(){
+    document.getElementById("studentForm2").reset()
+})
+
+</script>
+
+</html>

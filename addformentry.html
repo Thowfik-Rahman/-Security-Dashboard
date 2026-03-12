@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Form</title>
+    <link rel="stylesheet" href="addform.css">
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="form1">
+            <div class="head">
+                <h4>Student Entry log Form</h4>
+            </div>
+            <form id="studentForm1">
+                <div class="std">
+                    <label>Student Name</label><br>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div  class="std">
+                    <label>Student ID</label><br>
+                    <input type="text" id="studentId" required>
+                </div>
+
+                <div  class="std">
+                    <label>Out Date</label><br>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div  class="std">
+                    <label>Out Time</label><br>
+                    <input type="time" id="time" required>
+                </div>
+                <div class="btn">
+                    <button type="submit">Submit</button>
+                    <button type="reset" class="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+
+document.getElementById("studentForm1").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const id = document.getElementById("studentId").value;
+const date = document.getElementById("date").value;
+const time = document.getElementById("time").value;
+
+const student = {name,id,date,time};
+
+let entries = JSON.parse(localStorage.getItem("entryLogs")) || [];
+
+entries.push(student);
+
+localStorage.setItem("entryLogs", JSON.stringify(entries));
+
+window.location.replace("veiwentry.html");
+
+});
+
+
+document.getElementsByClassName("reset").addEventListener
+("click",function(){
+    document.getElementById("studentForm1").reset()
+})
+
+</script>
+
+</html>

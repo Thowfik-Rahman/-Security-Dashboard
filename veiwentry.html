@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veiw Log</title>
+    <link rel="stylesheet" href="veiw.css">
+</head>
+
+<body>
+
+    <div id="const1">
+        <div class="const">
+            <div class="c1">
+                <p>Entry Records</p>
+            </div>
+            <div class="c2">
+                <a href="addformentry.html"><button>+ Add</button>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="Records1">
+
+        </div>
+</body>
+<script>
+
+let records = JSON.parse(localStorage.getItem("entryLogs")) || [];
+
+const container = document.querySelector(".Records1");
+
+records.forEach(data => {
+
+container.innerHTML += `
+<div class="r1">
+<p>Student ID : ${data.id}</p>
+<p>Student Name : ${data.name}</p>
+<p>Time : ${data.time}</p>
+<p>Date : ${data.date}</p>
+</div>
+`;
+
+});
+
+</script>
+
+</html>

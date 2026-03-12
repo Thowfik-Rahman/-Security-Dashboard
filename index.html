@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="afterSecuityLogin.css">
+    <title>Security Dashboard</title>
+</head>
+
+<body>
+
+    <div class="box1">
+        <div class="side" id="sidebar">
+            <h3>
+                <img src="security.png" alt="icon" id="img4">
+                Security Dashboard
+            </h3>
+
+            <ul>
+
+                <li class="active">
+                    <img src="dashboard.png" width="20">
+                    Dashboard
+                </li>
+
+                <a href="veiwentry.html">
+                    <li>
+                        <img src="studentcheck.png" width="20">
+                        Student Entry Log
+                    </li>
+                </a>
+
+                <a href="veiwexit.html">
+                    <li>
+                        <img src="studentuncheck.png" width="20" id="change">
+                        Student Exit Log
+                    </li>
+                </a>
+
+                <li>
+                    <img src="logout2.png" width="20">
+                    Logout
+                </li>
+
+            </ul>
+        </div>
+        <div class="main">
+
+            <div class="head">
+                <div class="lefthead">
+                    <img src="image/bar.png" id="imgmenu1" alt="icon">
+                    <h1 class="h1">Welcome Security</h1>
+                </div>
+                <button id="b1">
+                    <img src="image/logout1.png" id="logouticon">
+                    Logout
+                </button>
+            </div>
+
+            <div class="cards">
+                <a href="">
+                    <div class="card">
+                        <a href="veiwentry.html">
+                            <img src="entry.png" id="img1">
+                            <h3>Student Entry Log</h3>
+                            <hr>
+                            <p>Details of Entry Log</p>
+                        </a>
+
+
+                    </div>
+                </a>
+                <a href="">
+                    <div class="card">
+                        <a href="veiwexit.html">
+                            <img src="exit.png" id="img2">
+                            <h3>Student Exit Log</h3>
+                            <hr>
+                            <p>Details of Exit Log</p>
+                        </a>
+
+                    </div>
+                </a>
+            </div>
+            <div class="recent">
+                <div class="nxt">
+                    <h1 class="h2">Recent Request </h1>
+                </div>
+                <div class="Records" id="records">
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+                    <div class="r1">
+                        <p>Student ID : 123456</p>
+                        <p>Time:08:00 AM</p>
+                        <p>status :Entry Approved</p>
+                    </div>
+
+                </div>
+                </div>
+
+
+</body>
+<script>
+    const menu = document.getElementById("imgmenu1");
+    const sidebar = document.getElementById("sidebar");
+
+    menu.addEventListener("click", function () {
+        sidebar.classList.toggle("hide");
+    });
+
+
+    function loadRequests() {
+
+        fetch("getRequests.php")
+            .then(response => response.json())
+            .then(data => {
+
+                const records = document.getElementById("records");
+                records.innerHTML = "";
+
+                data.forEach(req => {
+
+                    const div = document.createElement("div");
+                    div.className = "r1";
+
+                    div.innerHTML = `
+                            <div class="r1">
+                                <p>ID : ${req.student_id}</p>
+                                <p>Time : ${req.time}</p>
+                                <p>Status : ${req.status}</p>
+                                </div>
+                        `;
+
+                    records.appendChild(div);
+
+                });
+
+            });
+
+    }
+
+    loadRequests();
+
+
+
+    setInterval(loadRequests, 2000);
+
+</script>
+
+
+
+
+</html>
